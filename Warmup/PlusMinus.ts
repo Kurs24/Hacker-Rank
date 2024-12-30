@@ -1,5 +1,7 @@
 "use strict";
 
+import process from "node:process";
+
 process.stdin.resume();
 process.stdin.setEncoding("utf-8");
 
