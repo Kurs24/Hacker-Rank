@@ -32,29 +32,52 @@ function readLine(): string {
 
 function migratoryBirds(arr: number[]): number {
   // Write your code here
-  arr.sort((a, b) => a - b);
+  // arr.sort((a, b) => a - b);
 
+  // let maxCount: number = 0;
+  // let maxId: number = 0
+  // let count: number = 1;
+
+  // for (let i = 0; i < arr.length - 1; i++) {
+
+  //     if (arr[i] == arr[i + 1]) {
+  //         count += 1;
+  //     } else {
+  //         count = 1;
+  //     }
+
+  //     if (count >= Math.ceil((arr.length / 2))) {
+  //         return arr[i];
+  //     }
+
+  //     if (count > maxCount) {
+  //         maxCount = count;
+  //         maxId = arr[i];
+  //     };
+  // }
+
+  // return maxId;
+
+  // Another Option
+
+  let freq: number[] = [0, 0, 0, 0, 0];
+  let maxId: number = arr[0];
   let maxCount: number = 0;
-  let maxId: number = 0;
-  let count: number = 1;
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] == arr[i + 1]) {
-      count += 1;
-    } else {
-      count = 1;
-    }
+  for (let i = 0; i < arr.length; i++) {
+    freq[arr[i] - 1] += 1;
 
-    if (count >= Math.ceil(arr.length / 2)) {
-      return arr[i];
-    }
-
-    if (count > maxCount) {
-      maxCount = count;
+    if (freq[arr[i] - 1] > maxCount) {
+      maxCount = freq[arr[i] - 1];
+      maxId = arr[i];
+    } else if (freq[arr[i] - 1] == maxCount && arr[i] < maxId) {
       maxId = arr[i];
     }
-  }
 
+    if (maxCount >= Math.ceil(arr.length / 2)) {
+      return maxId;
+    }
+  }
   return maxId;
 }
 
